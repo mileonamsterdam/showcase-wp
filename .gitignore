@@ -1,0 +1,7 @@
+# Ignore everything
+wordpress/*
+# Except the following
+!wordpress/wp-content/
+wordpress/wp-content/*
+!wordpress/wp-content/plugins/
+!wordpress/wp-content/themes/

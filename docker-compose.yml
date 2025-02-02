@@ -1,0 +1,31 @@
+services:
+
+  wordpress-showcase:
+    image: wordpress
+    restart: always
+    ports:
+      - 8080:80
+    environment:
+      WORDPRESS_DB_HOST: db-showcase
+      WORDPRESS_DB_USER: username_here
+      WORDPRESS_DB_PASSWORD: password_here
+      WORDPRESS_DB_NAME: database_name_here
+    volumes:
+      - wordpress-showcase:/var/www/html
+      - ./wordpress/wp-content/themes:/var/www/html/wp-content/themes/
+      - ./wordpress/wp-content/plugins:/var/www/html/wp-content/plugins/
+
+  db-showcase:
+    image: mysql:8.0
+    restart: always
+    environment:
+      MYSQL_DATABASE: database_name_here
+      MYSQL_USER: username_here
+      MYSQL_PASSWORD: password_here
+      MYSQL_RANDOM_ROOT_PASSWORD: '1'
+    volumes:
+      - db-showcase:/var/lib/mysql
+
+volumes:
+  wordpress-showcase:
+  db-showcase:
